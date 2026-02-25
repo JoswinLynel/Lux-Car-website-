@@ -1462,7 +1462,8 @@ input[type="datetime-local"] {
 .fleet-grid-full {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
+    gap: 24px;
+    align-items: stretch;
 }
 
 .fleet-card-item {
