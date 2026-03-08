@@ -44,6 +44,7 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
+    overflow-x: hidden;
 }
 
 body {
@@ -191,12 +192,22 @@ section {
 }
 
 .btn-large {
-    padding: 18px 40px;
-    font-size: 0.95rem;
+    padding: 14px 28px;
+    font-size: 0.85rem;
 }
 
 .btn-full {
     width: 100%;
+}
+
+.btn svg {
+    width: 20px;
+    height: 20px;
+    transition: transform var(--transition-fast);
+}
+
+.btn:hover svg {
+    transform: translateX(4px);
 }
 
 /* ========================================
@@ -208,14 +219,14 @@ section {
     left: 0;
     right: 0;
     z-index: 1000;
-    padding: 20px 0;
+    padding: 15px 0;
     transition: var(--transition-smooth);
 }
 
 .navbar.scrolled {
     background: rgba(5, 5, 5, 0.95);
     backdrop-filter: blur(20px);
-    padding: 12px 0;
+    padding: 10px 0;
     border-bottom: 1px solid var(--border);
 }
 
@@ -239,7 +250,7 @@ section {
 }
 
 .logo-icon {
-    height: 80px;
+    height: 65px;
     width: auto;
     object-fit: contain;
 }
@@ -253,19 +264,20 @@ section {
 
 .nav-links a {
     font-family: var(--font-heading);
-    font-size: 0.9rem;
+    font-size: 1.15rem;
     font-weight: 400;
-    color: var(--text-secondary);
+    color: var(--text-primary);
     position: relative;
+    transition: var(--transition-fast);
 }
 
 .nav-links a::after {
     content: '';
     position: absolute;
-    bottom: -4px;
+    bottom: -6px;
     left: 0;
     width: 0;
-    height: 1px;
+    height: 2px;
     background: var(--accent);
     transition: var(--transition-fast);
 }
@@ -273,11 +285,14 @@ section {
 .nav-links a:hover,
 .nav-links a.active {
     color: var(--text-primary);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
 }
 
 .nav-links a:hover::after,
 .nav-links a.active::after {
     width: 100%;
+    box-shadow: 0 0 8px var(--accent);
+    background: var(--accent-hover);
 }
 
 .nav-cta {
@@ -295,6 +310,7 @@ section {
     background: none;
     border: none;
     cursor: pointer;
+    z-index: 1001;
 }
 
 .mobile-toggle span {
@@ -1311,10 +1327,14 @@ input[type="datetime-local"] {
         left: 0;
         right: 0;
         bottom: 0;
+        height: 100dvh;
+        width: 100%;
         background: rgba(5, 5, 5, 0.98);
         backdrop-filter: blur(20px);
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
+        padding-top: 140px;
+        padding-bottom: 40px;
         gap: 32px;
         opacity: 0;
         visibility: hidden;
@@ -1753,6 +1773,9 @@ input[type="datetime-local"] {
     font-family: var(--font-body);
     font-size: 0.95rem;
     transition: var(--transition-fast);
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .form-group input::placeholder,
@@ -2363,3 +2386,321 @@ input[type="datetime-local"] {
     width: 16px;
     height: 16px;
 }
+
+/* WhatsApp Button */
+.btn-whatsapp {
+    background: #25D366;
+    color: white;
+    border-color: #25D366;
+}
+
+.btn-whatsapp:hover {
+    background: #128C7E;
+    border-color: #128C7E;
+    color: white;
+    box-shadow: 0 0 15px rgba(37, 211, 102, 0.4);
+}
+
+/* ========================================
+   New Minimal Booking Form Styles
+   ======================================== */
+.booking-form-full {
+    background: var(--bg-surface);
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.section-title svg {
+    width: 20px;
+    height: 20px;
+    color: var(--accent);
+}
+
+.section-title h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.optional-text {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: normal;
+    margin-left: 6px;
+}
+
+.form-group-minimal {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.form-group-minimal label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+.form-group-minimal input,
+.form-group-minimal select,
+.form-group-minimal textarea {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #333;
+    padding: 10px 0;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    font-family: var(--font-body);
+    border-radius: 0;
+    transition: var(--transition-fast);
+    width: 100%;
+}
+
+/* Fix browser autofill background changing to white/blue */
+.form-group-minimal input:-webkit-autofill,
+.form-group-minimal input:-webkit-autofill:hover,
+.form-group-minimal input:-webkit-autofill:focus,
+.form-group-minimal input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px var(--bg-surface) inset !important;
+    -webkit-text-fill-color: var(--text-primary) !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.form-group-minimal input:focus,
+.form-group-minimal select:focus,
+.form-group-minimal textarea:focus {
+    outline: none;
+    border-bottom-color: var(--accent);
+    box-shadow: none;
+}
+
+.form-group-minimal input::placeholder,
+.form-group-minimal textarea::placeholder {
+    color: #555;
+}
+
+.form-group-minimal select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23555'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 16px;
+    padding-right: 24px;
+    cursor: pointer;
+}
+
+.form-group-minimal select option {
+    color: #1a1a1a;
+    background: #fff;
+}
+
+/* Style Date/Time Picker Icons */
+.form-group-minimal input[type="date"]::-webkit-calendar-picker-indicator,
+.form-group-minimal input[type="time"]::-webkit-calendar-picker-indicator {
+    filter: invert(1); /* Makes the black icon white */
+    opacity: 0.6;
+    cursor: pointer;
+    width: 100%; /* Expand click area to full input width */
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-position: right 10px center; /* Keep icon on the right */
+    background-size: 20px;
+}
+
+.form-group-minimal input[type="date"],
+.form-group-minimal input[type="time"] {
+    position: relative; /* Container for absolute indicator */
+}
+
+/* Custom Checkbox */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 32px;
+    margin-bottom: 24px;
+    cursor: pointer;
+    font-size: 1rem;
+    user-select: none;
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: transparent;
+    border: 2px solid var(--accent);
+    border-radius: 4px;
+    transition: var(--transition-fast);
+}
+
+.checkbox-container input:checked ~ .checkmark {
+    background-color: var(--accent);
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.checkbox-container .checkmark:after {
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid #1a1a1a;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.checkbox-label {
+    padding-top: 2px;
+}
+
+/* Return fields hidden by default */
+.return-fields {
+    display: none;
+    margin-top: 16px;
+}
+
+.return-fields.active {
+    display: block;
+}
+
+/* Payment Options */
+.payment-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.payment-card {
+    position: relative;
+    cursor: pointer;
+}
+
+.payment-card input {
+    position: absolute;
+    opacity: 0;
+}
+
+.payment-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 24px;
+    background: transparent;
+    border: 1px solid #333;
+    border-radius: 4px;
+    transition: var(--transition-smooth);
+    color: var(--text-secondary);
+}
+
+.payment-content svg {
+    width: 24px;
+    height: 24px;
+}
+
+.payment-symbol {
+    font-size: 1.5rem;
+    font-family: var(--font-heading);
+    line-height: 24px;
+}
+
+.payment-card input:checked + .payment-content {
+    border-color: var(--accent);
+    color: var(--text-primary);
+}
+
+.payment-card input:checked + .payment-content svg,
+.payment-card input:checked + .payment-content .payment-symbol {
+    color: var(--accent);
+}
+
+/* ========================================
+   Scroll Animations
+   ======================================== */
+
+/* Base state for all animated elements */
+[data-animate] {
+    opacity: 0;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+[data-animate].animated {
+    opacity: 1;
+}
+
+/* Fade Up */
+[data-animate="fade-up"] {
+    transform: translateY(40px);
+}
+[data-animate="fade-up"].animated {
+    transform: translateY(0);
+}
+
+/* Fade Down */
+[data-animate="fade-down"] {
+    transform: translateY(-40px);
+}
+[data-animate="fade-down"].animated {
+    transform: translateY(0);
+}
+
+/* Fade Left */
+[data-animate="fade-left"] {
+    transform: translateX(-40px);
+}
+[data-animate="fade-left"].animated {
+    transform: translateX(0);
+}
+
+/* Fade Right */
+[data-animate="fade-right"] {
+    transform: translateX(40px);
+}
+[data-animate="fade-right"].animated {
+    transform: translateX(0);
+}
+
+/* Zoom In */
+[data-animate="zoom-in"] {
+    transform: scale(0.9);
+}
+[data-animate="zoom-in"].animated {
+    transform: scale(1);
+}
+
+/* Fade In (no movement) */
+[data-animate="fade-in"] {
+    transform: none;
+}
+[data-animate="fade-in"].animated {
+    opacity: 1;
+}
+

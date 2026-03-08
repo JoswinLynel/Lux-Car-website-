@@ -1,5 +1,7 @@
-.minimax/
-.git/
+# Large media files
+images/hero-bg.gif
+images/hero-bg.png
+
+# OS files
 .DS_Store
 Thumbs.db
-*.log

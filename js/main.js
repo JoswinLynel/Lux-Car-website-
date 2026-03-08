@@ -181,29 +181,31 @@ function initBookingForm() {
 function initAnimations() {
     // Check if Intersection Observer is supported
     if (!('IntersectionObserver' in window)) {
-        // Fallback for older browsers - show all elements
-        document.querySelectorAll('.fade-in').forEach(el => {
-            el.classList.add('visible');
+        document.querySelectorAll('[data-animate]').forEach(el => {
+            el.classList.add('animated');
         });
         return;
     }
     
-    // Create observer
+    // Create observer — bidirectional (animate on scroll up and down)
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                // Optional: stop observing once visible
-                observer.unobserve(entry.target);
+                const delay = entry.target.dataset.delay || 0;
+                setTimeout(() => {
+                    entry.target.classList.add('animated');
+                }, delay);
+            } else {
+                entry.target.classList.remove('animated');
             }
         });
     }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        threshold: 0.15,
+        rootMargin: '0px 0px -60px 0px'
     });
     
-    // Observe all fade-in elements
-    document.querySelectorAll('.fade-in').forEach(el => {
+    // Observe all elements with data-animate attribute
+    document.querySelectorAll('[data-animate]').forEach(el => {
         observer.observe(el);
     });
 }

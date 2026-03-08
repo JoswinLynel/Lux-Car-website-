@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.gsexecutivetransfers.co.uk/sitemap.xml
