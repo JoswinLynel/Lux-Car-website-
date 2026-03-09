@@ -1064,7 +1064,7 @@ input[type="datetime-local"] {
    ======================================== */
 .cta-section {
     background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-deep) 100%);
-    padding: 100px 0;
+    padding: 0;
     position: relative;
     overflow: hidden;
 }
