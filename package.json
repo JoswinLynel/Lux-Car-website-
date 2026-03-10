@@ -1,0 +1,15 @@
+{
+  "name": "lux-car-website",
+  "version": "1.0.0",
+  "description": "Premium Chauffeur Service Website",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve . -l 3001"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "serve": "^14.2.6"
+  }
+}
