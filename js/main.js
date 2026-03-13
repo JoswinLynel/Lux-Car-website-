@@ -56,6 +56,27 @@ function initNavigation() {
             link.classList.add('active');
         }
     });
+    
+    // Also highlight Pricing dropdown if on fleet.html
+    if (currentPage === 'fleet.html') {
+        const dropdownToggle = document.querySelector('.nav-dropdown-toggle');
+        if (dropdownToggle) dropdownToggle.classList.add('active');
+    }
+    
+    // Mobile dropdown toggle
+    const dropdowns = document.querySelectorAll('.nav-dropdown');
+    dropdowns.forEach(dropdown => {
+        const toggle = dropdown.querySelector('.nav-dropdown-toggle');
+        if (toggle) {
+            toggle.addEventListener('click', function(e) {
+                // Only intercept on mobile
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('open');
+                }
+            });
+        }
+    });
 }
 
 /**
@@ -119,7 +140,7 @@ function initBookingForm() {
             });
             
             // Redirect to contact page with pre-filled data
-            window.location.href = `contact.html?${params.toString()}`;
+            window.location.href = `booking.html?${params.toString()}`;
         });
     }
     
