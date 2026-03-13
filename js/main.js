@@ -38,7 +38,7 @@ function initNavigation() {
             document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
         });
         
-        // Close menu when clicking a link
+        // Close menu when clicking a link (but not dropdown toggles)
         navLinks.querySelectorAll('a:not(.nav-dropdown-toggle)').forEach(link => {
             link.addEventListener('click', () => {
                 mobileToggle.classList.remove('active');
@@ -71,8 +71,15 @@ function initNavigation() {
             toggle.addEventListener('click', function(e) {
                 // Only intercept on mobile
                 if (window.innerWidth <= 768) {
-                    e.preventDefault();
-                    dropdown.classList.toggle('open');
+                    if (!dropdown.classList.contains('open')) {
+                        e.preventDefault();
+                        dropdown.classList.add('open');
+                    } else {
+                        // Already open, allow navigation and close menu
+                        mobileToggle.classList.remove('active');
+                        navLinks.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
                 }
             });
         }
