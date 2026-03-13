@@ -223,9 +223,10 @@ function initAnimations() {
             }
         });
     }, {
-        threshold: 0.15,
-        rootMargin: '0px 0px -60px 0px'
+        threshold: 0.1, // Trigger slightly earlier
+        rootMargin: '0px 0px -20px 0px' // Offset trigger point
     });
+
     
     // Observe all elements with data-animate attribute
     document.querySelectorAll('[data-animate]').forEach(el => {
@@ -276,29 +277,6 @@ document.addEventListener('DOMContentLoaded', function() {
         initFleetFilter();
     }
 });
-
-/**
- * Smooth reveal for page elements
- */
-function revealOnScroll() {
-    const reveals = document.querySelectorAll('.reveal');
-    
-    const revealOnScroll = () => {
-        const windowHeight = window.innerHeight;
-        const revealPoint = 150;
-        
-        reveals.forEach(element => {
-            const elementTop = element.getBoundingClientRect().top;
-            
-            if (elementTop < windowHeight - revealPoint) {
-                element.classList.add('active');
-            }
-        });
-    };
-    
-    window.addEventListener('scroll', revealOnScroll);
-    revealOnScroll(); // Initial check
-}
 
 /**
  * Mobile menu swipe support
