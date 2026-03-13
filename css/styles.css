@@ -787,7 +787,7 @@ input[type="datetime-local"] {
    Fleet Section
    ======================================== */
 .fleet-preview {
-    background: var(--bg-deep);
+    background: var(--bg-surface);
 }
 
 .fleet-grid {
@@ -1100,6 +1100,7 @@ input[type="datetime-local"] {
     from {
         transform: translateX(0);
     }
+
     to {
         transform: translateX(calc(-50% - 1rem));
     }
@@ -1147,7 +1148,7 @@ input[type="datetime-local"] {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top right, rgba(255,255,255,0.05), rgba(255,255,255,0.1));
+    background: linear-gradient(to top right, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.1));
     opacity: 0.4;
     z-index: 0;
     transition: opacity 0.5s ease;
@@ -1159,7 +1160,7 @@ input[type="datetime-local"] {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
     transform: skewX(-12deg) translateX(100%);
     z-index: 0;
     transition: transform 1s ease;
@@ -1195,14 +1196,14 @@ input[type="datetime-local"] {
 .testimonial-card .card-corner-tl {
     top: 0;
     left: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
     border-bottom-right-radius: 24px;
 }
 
 .testimonial-card .card-corner-br {
     bottom: 0;
     right: 0;
-    background: linear-gradient(315deg, rgba(255,255,255,0.1), transparent);
+    background: linear-gradient(315deg, rgba(255, 255, 255, 0.1), transparent);
     border-top-left-radius: 24px;
 }
 
@@ -1436,7 +1437,7 @@ input[type="datetime-local"] {
    Page Header (Inner Pages)
    ======================================== */
 .page-header {
-    padding: 180px 0 100px;
+    padding: 180px 0 40px;
     background: var(--bg-deep);
     text-align: center;
     position: relative;
@@ -1534,6 +1535,7 @@ input[type="datetime-local"] {
     .marquee-container {
         padding: 5px 0;
     }
+
     .testimonial-card {
         width: 320px;
         padding: 30px;
@@ -1722,7 +1724,7 @@ input[type="datetime-local"] {
    Fleet Page Styles
    ======================================== */
 .fleet-section {
-    background: var(--bg-deep);
+    background: var(--bg-surface);
 }
 
 .fleet-filter {
@@ -1965,7 +1967,7 @@ input[type="datetime-local"] {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top right, rgba(255,255,255,0.05), rgba(255,255,255,0.1));
+    background: linear-gradient(to top right, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.1));
     opacity: 0.4;
     z-index: 0;
     transition: opacity 0.5s ease;
@@ -1977,7 +1979,7 @@ input[type="datetime-local"] {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
     transform: skewX(-12deg) translateX(100%);
     z-index: 0;
     transition: transform 1s ease;
@@ -2014,14 +2016,14 @@ input[type="datetime-local"] {
 .why-card .card-corner-tl {
     top: 0;
     left: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
     border-bottom-right-radius: 24px;
 }
 
 .why-card .card-corner-br {
     bottom: 0;
     right: 0;
-    background: linear-gradient(315deg, rgba(255,255,255,0.1), transparent);
+    background: linear-gradient(315deg, rgba(255, 255, 255, 0.1), transparent);
     border-top-left-radius: 24px;
 }
 
@@ -2150,7 +2152,7 @@ input[type="datetime-local"] {
     display: -webkit-box;
     -webkit-line-clamp: 2;
     line-clamp: 2;
-    -webkit-box-orient: vertical;  
+    -webkit-box-orient: vertical;
     overflow: hidden;
     flex-grow: 1;
 }
@@ -2203,7 +2205,7 @@ input[type="datetime-local"] {
     margin: -40px auto 60px;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
     position: relative;
     z-index: 10;
 }
@@ -2523,7 +2525,7 @@ input[type="datetime-local"] {
 }
 
 .faq-container {
-    max-width: 1000px;
+    max-width: 75%;
     margin: 0 auto;
 }
 
@@ -2603,6 +2605,7 @@ input[type="datetime-local"] {
         padding: 20px 24px;
         font-size: 1rem;
     }
+
     .faq-item.active .faq-answer {
         padding: 20px 24px;
     }
@@ -2808,9 +2811,9 @@ input[type="datetime-local"] {
    ======================================== */
 .pricing-section {
     padding: var(--section-spacing) 0;
-    background: var(--bg-surface);
+    background: var(--bg-deep);
     position: relative;
-    border-top: 1px solid var(--border);
+    border-top: 1px var(--border);
     border-bottom: 1px solid var(--border);
 }
 
@@ -3208,21 +3211,25 @@ input[type="datetime-local"] {
 /* Style Date/Time Picker Icons */
 .form-group-minimal input[type="date"]::-webkit-calendar-picker-indicator,
 .form-group-minimal input[type="time"]::-webkit-calendar-picker-indicator {
-    filter: invert(1); /* Makes the black icon white */
+    filter: invert(1);
+    /* Makes the black icon white */
     opacity: 0.6;
     cursor: pointer;
-    width: 100%; /* Expand click area to full input width */
+    width: 100%;
+    /* Expand click area to full input width */
     height: 100%;
     position: absolute;
     left: 0;
     top: 0;
-    background-position: right 10px center; /* Keep icon on the right */
+    background-position: right 10px center;
+    /* Keep icon on the right */
     background-size: 20px;
 }
 
 .form-group-minimal input[type="date"],
 .form-group-minimal input[type="time"] {
-    position: relative; /* Container for absolute indicator */
+    position: relative;
+    /* Container for absolute indicator */
 }
 
 /* Custom Checkbox */
@@ -3257,7 +3264,7 @@ input[type="datetime-local"] {
     transition: var(--transition-fast);
 }
 
-.checkbox-container input:checked ~ .checkmark {
+.checkbox-container input:checked~.checkmark {
     background-color: var(--accent);
 }
 
@@ -3267,7 +3274,7 @@ input[type="datetime-local"] {
     display: none;
 }
 
-.checkbox-container input:checked ~ .checkmark:after {
+.checkbox-container input:checked~.checkmark:after {
     display: block;
 }
 
@@ -3337,13 +3344,13 @@ input[type="datetime-local"] {
     line-height: 24px;
 }
 
-.payment-card input:checked + .payment-content {
+.payment-card input:checked+.payment-content {
     border-color: var(--accent);
     color: var(--text-primary);
 }
 
-.payment-card input:checked + .payment-content svg,
-.payment-card input:checked + .payment-content .payment-symbol {
+.payment-card input:checked+.payment-content svg,
+.payment-card input:checked+.payment-content .payment-symbol {
     color: var(--accent);
 }
 
@@ -3365,6 +3372,7 @@ input[type="datetime-local"] {
 [data-animate="fade-up"] {
     transform: translateY(40px);
 }
+
 [data-animate="fade-up"].animated {
     transform: translateY(0);
 }
@@ -3373,6 +3381,7 @@ input[type="datetime-local"] {
 [data-animate="fade-down"] {
     transform: translateY(-40px);
 }
+
 [data-animate="fade-down"].animated {
     transform: translateY(0);
 }
@@ -3381,6 +3390,7 @@ input[type="datetime-local"] {
 [data-animate="fade-left"] {
     transform: translateX(-40px);
 }
+
 [data-animate="fade-left"].animated {
     transform: translateX(0);
 }
@@ -3389,6 +3399,7 @@ input[type="datetime-local"] {
 [data-animate="fade-right"] {
     transform: translateX(40px);
 }
+
 [data-animate="fade-right"].animated {
     transform: translateX(0);
 }
@@ -3397,6 +3408,7 @@ input[type="datetime-local"] {
 [data-animate="zoom-in"] {
     transform: scale(0.9);
 }
+
 [data-animate="zoom-in"].animated {
     transform: scale(1);
 }
@@ -3405,6 +3417,7 @@ input[type="datetime-local"] {
 [data-animate="fade-in"] {
     transform: none;
 }
+
 [data-animate="fade-in"].animated {
     opacity: 1;
 }
@@ -3430,10 +3443,26 @@ input[type="datetime-local"] {
     color: var(--text-muted);
     z-index: 10;
 }
-.corner-plus.top-left { top: -12px; left: -12px; }
-.corner-plus.top-right { top: -12px; right: -12px; }
-.corner-plus.bottom-left { bottom: -12px; left: -12px; }
-.corner-plus.bottom-right { bottom: -12px; right: -12px; }
+
+.corner-plus.top-left {
+    top: -12px;
+    left: -12px;
+}
+
+.corner-plus.top-right {
+    top: -12px;
+    right: -12px;
+}
+
+.corner-plus.bottom-left {
+    bottom: -12px;
+    left: -12px;
+}
+
+.corner-plus.bottom-right {
+    bottom: -12px;
+    right: -12px;
+}
 
 @media (min-width: 992px) {
     .react-contact-wrapper {
@@ -3462,7 +3491,7 @@ input[type="datetime-local"] {
     color: var(--text-primary);
 }
 
-.react-contact-info > p {
+.react-contact-info>p {
     color: var(--text-secondary);
     font-size: 1.1rem;
     max-width: 600px;
@@ -3510,7 +3539,8 @@ input[type="datetime-local"] {
     color: var(--text-primary);
 }
 
-.react-contact-text p.value, .react-contact-text a {
+.react-contact-text p.value,
+.react-contact-text a {
     font-size: 0.9rem;
     color: var(--text-secondary);
     text-decoration: none;
@@ -3617,6 +3647,7 @@ input[type="datetime-local"] {
 }
 
 @media (max-width: 768px) {
+
     .react-contact-info,
     .react-contact-form-side {
         padding: 32px 24px;
@@ -3624,6 +3655,7 @@ input[type="datetime-local"] {
 }
 
 @media (max-width: 480px) {
+
     .react-contact-info,
     .react-contact-form-side {
         padding: 24px 16px;
