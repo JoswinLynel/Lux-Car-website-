@@ -71,14 +71,21 @@ function initNavigation() {
             toggle.addEventListener('click', function(e) {
                 // Only intercept on mobile
                 if (window.innerWidth <= 768) {
-                    if (!dropdown.classList.contains('open')) {
+                    // Check if the click was on the SVG arrow or its children
+                    const isArrowClick = e.target.closest('svg') || e.target.tagName.toLowerCase() === 'svg';
+                    
+                    if (isArrowClick) {
                         e.preventDefault();
-                        dropdown.classList.add('open');
+                        e.stopPropagation();
+                        dropdown.classList.toggle('open');
                     } else {
-                        // Already open, allow navigation and close menu
-                        mobileToggle.classList.remove('active');
-                        navLinks.classList.remove('active');
-                        document.body.style.overflow = '';
+                        // It's the link text, let it navigate
+                        // But close the mobile menu after a short delay if it's an anchor on same page
+                        setTimeout(() => {
+                            mobileToggle.classList.remove('active');
+                            navLinks.classList.remove('active');
+                            document.body.style.overflow = '';
+                        }, 100);
                     }
                 }
             });

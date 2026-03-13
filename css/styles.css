@@ -309,6 +309,9 @@ section {
 .nav-dropdown-toggle svg {
     transition: transform 0.2s ease;
     flex-shrink: 0;
+    padding: 10px;
+    margin: -10px;
+    cursor: pointer;
 }
 
 .nav-dropdown:hover .nav-dropdown-toggle svg,
