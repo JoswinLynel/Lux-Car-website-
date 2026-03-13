@@ -2512,15 +2512,21 @@ input[type="datetime-local"] {
 }
 
 .faq-container {
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
+}
+
+.faq-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    align-items: start;
 }
 
 .faq-item {
     background: var(--bg-elevated);
     border: 1px solid var(--border);
     border-radius: 12px;
-    margin-bottom: 20px;
     overflow: hidden;
     transition: var(--transition);
 }
@@ -2573,6 +2579,12 @@ input[type="datetime-local"] {
     padding: 24px 32px;
     max-height: 300px;
     border-top: 1px solid var(--border);
+}
+
+@media (max-width: 992px) {
+    .faq-list {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 768px) {
@@ -2727,6 +2739,57 @@ input[type="datetime-local"] {
         padding: 30px 24px;
     }
 
+}
+
+/* ========================================
+   Trustpilot Widget Add-On
+   ======================================== */
+.trustpilot-card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: var(--transition);
+    text-decoration: none;
+    gap: 12px;
+}
+
+.trustpilot-card:hover {
+    border-color: #00b67a;
+    box-shadow: 0 4px 20px rgba(0, 182, 122, 0.1);
+    transform: translateY(-4px);
+}
+
+.tp-stars {
+    display: flex;
+    gap: 4px;
+}
+
+.tp-star-icon {
+    width: 28px;
+    height: 28px;
+    fill: #00b67a;
+}
+
+.tp-text {
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.tp-subtext {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.tp-subtext strong {
+    color: var(--text-primary);
 }
 
 /* ========================================
