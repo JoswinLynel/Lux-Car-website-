@@ -1578,6 +1578,10 @@ input[type="datetime-local"] {
         padding: 5px 0;
     }
 
+    .nav-links a::after {
+        display: none !important;
+    }
+
     .nav-dropdown {
         width: 100%;
         display: flex;

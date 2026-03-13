@@ -39,7 +39,7 @@ function initNavigation() {
         });
         
         // Close menu when clicking a link
-        navLinks.querySelectorAll('a').forEach(link => {
+        navLinks.querySelectorAll('a:not(.nav-dropdown-toggle)').forEach(link => {
             link.addEventListener('click', () => {
                 mobileToggle.classList.remove('active');
                 navLinks.classList.remove('active');
