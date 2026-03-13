@@ -1623,6 +1623,10 @@ input[type="datetime-local"] {
 
     .nav-cta {
         margin-top: 20px;
+        font-size: 1rem !important;
+        width: auto !important;
+        padding: 12px 32px !important;
+        color: #FFFFFF !important;
     }
 
     .hero-content {
