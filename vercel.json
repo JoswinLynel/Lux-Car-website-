@@ -1,0 +1,66 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/book-online/(.*)",
+      "destination": "/booking",
+      "permanent": true
+    },
+    {
+      "source": "/book-online",
+      "destination": "/booking",
+      "permanent": true
+    },
+    {
+      "source": "/services/(.*)",
+      "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/services",
+      "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/fleet/(.*)",
+      "destination": "/fleet",
+      "permanent": true
+    },
+    {
+      "source": "/fleet",
+      "destination": "/fleet",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us/(.*)",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/blog/(.*)",
+      "destination": "/blogs",
+      "permanent": true
+    },
+    {
+      "source": "/blog",
+      "destination": "/blogs",
+      "permanent": true
+    },
+    {
+      "source": "/chauffeur-service/(.*)",
+      "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/chauffeur-service",
+      "destination": "/services",
+      "permanent": true
+    }
+  ]
+}
