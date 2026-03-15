@@ -13,26 +13,6 @@
       "permanent": true
     },
     {
-      "source": "/services/(.*)",
-      "destination": "/services",
-      "permanent": true
-    },
-    {
-      "source": "/services",
-      "destination": "/services",
-      "permanent": true
-    },
-    {
-      "source": "/fleet/(.*)",
-      "destination": "/fleet",
-      "permanent": true
-    },
-    {
-      "source": "/fleet",
-      "destination": "/fleet",
-      "permanent": true
-    },
-    {
       "source": "/contact-us/(.*)",
       "destination": "/contact",
       "permanent": true
