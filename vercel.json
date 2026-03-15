@@ -53,6 +53,26 @@
       "permanent": true
     },
     {
+      "source": "/our-services/(.*)",
+      "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/our-services",
+      "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/pricing/(.*)",
+      "destination": "/fleet",
+      "permanent": true
+    },
+    {
+      "source": "/pricing",
+      "destination": "/fleet",
+      "permanent": true
+    },
+    {
       "source": "/blog/(.*)",
       "destination": "/blogs",
       "permanent": true
