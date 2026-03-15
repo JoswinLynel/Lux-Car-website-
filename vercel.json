@@ -43,6 +43,16 @@
       "permanent": true
     },
     {
+      "source": "/our-service/(.*)",
+      "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/our-service",
+      "destination": "/services",
+      "permanent": true
+    },
+    {
       "source": "/blog/(.*)",
       "destination": "/blogs",
       "permanent": true
