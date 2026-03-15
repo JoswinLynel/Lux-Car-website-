@@ -302,8 +302,8 @@
                         target="_blank" rel="noopener noreferrer"
                         style="color: var(--accent); text-decoration: none;">Made by EsyAI</a></p>
                 <div class="footer-legal">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-service.html">Terms of Service</a>
                 </div>
             </div>
         </div>
@@ -319,16 +319,46 @@
                 const originalHTML = submitBtn.innerHTML;
                 submitBtn.innerHTML = 'Sending...';
                 submitBtn.disabled = true;
-                setTimeout(() => {
-                    submitBtn.innerHTML = '✓ Message Sent!';
-                    submitBtn.style.background = '#10B981';
+
+                const payload = {
+                    formType: 'contact',
+                    name: document.getElementById('contactName').value,
+                    email: document.getElementById('contactEmail').value,
+                    phone: document.getElementById('contactPhone').value,
+                    message: document.getElementById('contactMessage').value
+                };
+
+                fetch('/api/send_mail', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        submitBtn.innerHTML = '✓ Message Sent!';
+                        submitBtn.style.background = '#10B981';
+                        contactForm.reset();
+                    } else {
+                        submitBtn.innerHTML = 'Error Sending';
+                        submitBtn.style.background = '#EF4444';
+                    }
                     setTimeout(() => {
                         submitBtn.innerHTML = originalHTML;
                         submitBtn.disabled = false;
                         submitBtn.style.background = '';
-                        contactForm.reset();
-                    }, 3000);
-                }, 1500);
+                    }, 4000);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    submitBtn.innerHTML = 'Error Sending';
+                    submitBtn.style.background = '#EF4444';
+                    setTimeout(() => {
+                        submitBtn.innerHTML = originalHTML;
+                        submitBtn.disabled = false;
+                        submitBtn.style.background = '';
+                    }, 4000);
+                });
             });
         }
     </script>

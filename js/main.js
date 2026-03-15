@@ -189,25 +189,74 @@ function initBookingForm() {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Show success message (in production, this would send to server)
             const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
+            const originalHTML = submitBtn.innerHTML;
             
-            submitBtn.textContent = 'Sending...';
+            submitBtn.innerHTML = 'Sending...';
             submitBtn.disabled = true;
             
-            // Simulate API call
-            setTimeout(() => {
-                submitBtn.textContent = '✓ Request Sent!';
-                submitBtn.style.background = '#10B981';
+            const requireReturn = document.getElementById('requireReturn')?.checked;
+            const paymentType = document.querySelector('input[name="paymentType"]:checked')?.value || '';
+
+            const payload = {
+                formType: 'booking',
+                passengerName: document.getElementById('passengerName')?.value || '',
+                phoneNumber: document.getElementById('phoneNumber')?.value || '',
+                emailAddr: document.getElementById('emailAddr')?.value || '',
+                pickupLoc: document.getElementById('pickupLoc')?.value || document.getElementById('pickupLocation')?.value || '',
+                journeyDate: document.getElementById('journeyDate')?.value || document.getElementById('bookingDate')?.value || '',
+                journeyTime: document.getElementById('journeyTime')?.value || '',
+                destinationLoc: document.getElementById('destinationLoc')?.value || document.getElementById('dropoffLocation')?.value || '',
+                vehType: document.getElementById('vehType')?.value || document.getElementById('vehicleType')?.value || '',
+                numPassengers: document.getElementById('numPassengers')?.value || '',
+                smallSuitcases: document.getElementById('smallSuitcases')?.value || '',
+                largeSuitcases: document.getElementById('largeSuitcases')?.value || '',
+                flightNumber: document.getElementById('flightNumber')?.value || '',
+                landingTime: document.getElementById('landingTime')?.value || '',
+                requireReturn: requireReturn ? 'true' : 'false',
+                paymentType: paymentType,
+                additionalInfo: document.getElementById('additionalInfo')?.value || ''
+            };
+
+            if (requireReturn) {
+                payload.returnPickup = document.getElementById('returnPickup')?.value || '';
+                payload.returnDateVal = document.getElementById('returnDateVal')?.value || '';
+                payload.returnTime = document.getElementById('returnTime')?.value || '';
+                payload.returnFlight = document.getElementById('returnFlight')?.value || '';
+            }
+
+            fetch('/api/send_mail', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.status === 'success') {
+                    submitBtn.innerHTML = '✓ Request Sent!';
+                    submitBtn.style.background = '#10B981';
+                    contactForm.reset();
+                } else {
+                    submitBtn.innerHTML = 'Error Sending';
+                    submitBtn.style.background = '#EF4444';
+                }
                 
                 setTimeout(() => {
-                    submitBtn.textContent = originalText;
+                    submitBtn.innerHTML = originalHTML;
                     submitBtn.disabled = false;
                     submitBtn.style.background = '';
-                    contactForm.reset();
-                }, 3000);
-            }, 1500);
+                }, 4000);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                submitBtn.innerHTML = 'Error Sending';
+                submitBtn.style.background = '#EF4444';
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalHTML;
+                    submitBtn.disabled = false;
+                    submitBtn.style.background = '';
+                }, 4000);
+            });
         });
     }
 }
