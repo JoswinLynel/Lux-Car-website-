@@ -23,6 +23,26 @@
       "permanent": true
     },
     {
+      "source": "/about-us/(.*)",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/about-us",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/about/(.*)",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/about",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/blog/(.*)",
       "destination": "/blogs",
       "permanent": true
