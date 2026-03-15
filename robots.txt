@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /about-us
+Disallow: /about
+Disallow: /about-us/
+Disallow: /about/
 
 Sitemap: https://www.gsexecutivetransfers.co.uk/sitemap.xml
