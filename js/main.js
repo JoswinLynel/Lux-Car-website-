@@ -273,27 +273,36 @@ function initAnimations() {
         return;
     }
     
-    // Create observer — bidirectional (animate on scroll up and down)
+    // Create observer — bidirectional
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const delay = entry.target.dataset.delay || 0;
+                const delay = parseInt(entry.target.dataset.delay) || 0;
                 setTimeout(() => {
                     entry.target.classList.add('animated');
                 }, delay);
             } else {
-                entry.target.classList.remove('animated');
+                // If it's a hero element, don't remove the animation once it's shown
+                if (!entry.target.closest('.hero')) {
+                    entry.target.classList.remove('animated');
+                }
             }
         });
     }, {
-        threshold: 0.1, // Trigger slightly earlier
-        rootMargin: '0px 0px -20px 0px' // Offset trigger point
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
     });
-
     
     // Observe all elements with data-animate attribute
     document.querySelectorAll('[data-animate]').forEach(el => {
         observer.observe(el);
+        
+        // Immediate check for elements already in view (like Hero)
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+            const delay = parseInt(el.dataset.delay) || 0;
+            setTimeout(() => el.classList.add('animated'), delay);
+        }
     });
 }
 
@@ -382,8 +391,40 @@ initMobileGestures();
 function initWaves() {
     const containers = document.querySelectorAll('.waves-component');
     if (containers.length === 0 || (typeof window.simplexNoise === 'undefined' && typeof window.SimplexNoise === 'undefined')) {
-        return; // Nothing to animate or missing dependency
+        return;
     }
+
+    // Optimization: Only run wave animation when in view
+    if ('IntersectionObserver' in window) {
+        const waveObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (!entry.target.dataset.wavesInitialized) {
+                        setupWavesForContainer(entry.target);
+                        entry.target.dataset.wavesInitialized = 'true';
+                    } else if (entry.target.dataset.wavesPaused === 'true') {
+                        entry.target.dataset.wavesPaused = 'false';
+                        // The tick function will need to check this
+                    }
+                } else {
+                    entry.target.dataset.wavesPaused = 'true';
+                }
+            });
+        }, { threshold: 0.01 });
+
+        containers.forEach(container => waveObserver.observe(container));
+    } else {
+        // Fallback for older browsers
+        containers.forEach(container => setupWavesForContainer(container));
+    }
+}
+
+/**
+ * Setup actual wave animation for a single container
+ */
+function setupWavesForContainer(container) {
+    const svg = container.querySelector('svg.js-svg');
+    if (!svg) return;
 
     // Try to get constructor based on how it was loaded
     let noiseGen;
@@ -402,12 +443,8 @@ function initWaves() {
         return;
     }
 
-    containers.forEach(container => {
-        const svg = container.querySelector('svg.js-svg');
-        if (!svg) return;
-
-        const noiseInst = noiseGen; // use shared noise generator
-        const mouse = {
+    const noiseInst = noiseGen; 
+    const mouse = {
             x: -10, y: 0, lx: 0, ly: 0, sx: 0, sy: 0,
             v: 0, vs: 0, a: 0, set: false
         };
@@ -549,8 +586,12 @@ function initWaves() {
                 paths[i].setAttribute('d', d);
             });
         }
-
         function tick(time) {
+            if (container.dataset.wavesPaused === 'true') {
+                rafId = requestAnimationFrame(tick);
+                return;
+            }
+            
             mouse.sx += (mouse.x - mouse.sx) * 0.1;
             mouse.sy += (mouse.y - mouse.sy) * 0.1;
             
@@ -590,7 +631,6 @@ function initWaves() {
         }, { passive: false });
         
         rafId = requestAnimationFrame(tick);
-    });
 }
 
 /**
