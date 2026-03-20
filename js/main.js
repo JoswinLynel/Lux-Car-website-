@@ -394,17 +394,14 @@ function initWaves() {
         return;
     }
 
-    // Optimization: Only run wave animation when in view
     if ('IntersectionObserver' in window) {
         const waveObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
+                    entry.target.dataset.wavesPaused = 'false';
                     if (!entry.target.dataset.wavesInitialized) {
                         setupWavesForContainer(entry.target);
                         entry.target.dataset.wavesInitialized = 'true';
-                    } else if (entry.target.dataset.wavesPaused === 'true') {
-                        entry.target.dataset.wavesPaused = 'false';
-                        // The tick function will need to check this
                     }
                 } else {
                     entry.target.dataset.wavesPaused = 'true';
@@ -414,7 +411,6 @@ function initWaves() {
 
         containers.forEach(container => waveObserver.observe(container));
     } else {
-        // Fallback for older browsers
         containers.forEach(container => setupWavesForContainer(container));
     }
 }

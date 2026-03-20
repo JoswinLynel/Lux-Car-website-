@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "ffmpeg-static": "^5.3.0",
     "serve": "^14.2.6"
   },
   "dependencies": {
